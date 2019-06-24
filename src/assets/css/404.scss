@@ -1,0 +1,40 @@
+.wrap-401,
+.wrap-404 {
+	min-height: 500px;
+	padding-top: 100px;
+	.img-box {
+		height: 360px;
+		max-width: 430px;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: contain;
+		background-image: url('https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg');
+	}
+	.content-error {
+		padding-top: 90px;
+		h1 {
+			color: #434e59;
+			font-size: 72px;
+			font-weight: 600;
+			line-height: 72px;
+			margin-bottom: 24px;
+		}
+		.desc {
+			color: rgba(0, 0, 0, 0.45);
+			font-size: 20px;
+			line-height: 28px;
+			margin-bottom: 16px;
+		}
+	}
+}
+
+.wrap-404 {
+	.img-box {
+		height: 360px;
+		max-width: 430px;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: contain;
+		background-image: url('https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg');
+	}
+}

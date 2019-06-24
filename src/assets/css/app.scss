@@ -1,0 +1,48 @@
+/* 路由过渡效果 */
+.fade-enter {
+	opacity: 0;
+	transform: translateX(-30px);
+}
+
+.fade-enter-active,
+.fade-exit-active {
+	opacity: 1;
+	transition: all 500ms ease-out;
+	transform: translateX(0);
+}
+
+.fade-exit {
+	opacity: 0;
+	transform: translateX(30px);
+}
+
+.logo {
+	height: 70px;
+}
+.toggle-btn {
+	position: absolute;
+	right: -25px;
+	top: 30px;
+}
+.top-header {
+	background: #fff;
+	border-bottom: 1px solid #d8d8d8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px;
+	.header-title {
+		flex: 1;
+		padding-left: 20px;
+		font-size: 24px;
+	}
+	.header-right {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		width: 320px;
+		> div {
+			margin-left: 20px;
+		}
+	}
+}
