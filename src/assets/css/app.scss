@@ -23,26 +23,113 @@
 	position: absolute;
 	right: -25px;
 	top: 30px;
+	z-index: 1;
 }
 .top-header {
 	background: #fff;
 	border-bottom: 1px solid #d8d8d8;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	padding: 0 20px;
-	.header-title {
-		flex: 1;
-		padding-left: 20px;
-		font-size: 24px;
-	}
-	.header-right {
+	position: relative;
+	.top-header-inner {
+		height: 70px;
 		display: flex;
-		justify-content: flex-end;
 		align-items: center;
-		width: 320px;
-		> div {
-			margin-left: 20px;
+		justify-content: space-between;
+		width: 100%;
+		.header-title {
+			flex: 1;
+			padding-left: 20px;
+			font-size: 24px;
 		}
+		.header-right {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			width: 320px;
+			> div {
+				margin-left: 20px;
+			}
+		}
+	}
+}
+
+.shadow-radius {
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	padding: 8px;
+	background-color: #fff !important;
+}
+
+.link-button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	display: inline;
+	margin: 0;
+	padding: 0;
+	color: #1890ff;
+}
+
+.link-button:hover,
+.link-button:focus {
+	text-decoration: none;
+}
+
+.tags {
+	display: flex;
+	padding: 0;
+	margin-bottom: 4px;
+	width: 100%;
+	li {
+		list-style: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid #d8d8d8;
+		padding: 6px 10px;
+		margin-right: 4px;
+		cursor: pointer;
+		em {
+			font-style: normal;
+			font-size: 16px;
+			margin: 0 3px;
+			width: 14px;
+			height: 14px;
+			margin-top: -2px;
+			border-radius: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.hide {
+			display: none;
+		}
+		span,
+		em {
+			&:hover {
+				color: #1890ff;
+			}
+		}
+	}
+	.isActive {
+		color: #1890ff;
+		em {
+			color: #888;
+		}
+	}
+}
+.search-form {
+	padding: 15px;
+	.ant-form-item {
+		display: flex;
+	}
+	.ant-form-item-control-wrapper {
+		flex: 1;
+	}
+}
+.serarch-btns {
+	display: flex;
+	.ant-form-item {
+		margin-right: 10px;
 	}
 }

@@ -3,11 +3,14 @@ import { Icon, Avatar, Dropdown, Menu, Badge } from 'antd';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setUserInfo } from '@/redux/actions/userInfo';
+import { emptyTag } from '@/redux/actions/tagList';
 import FullScreen from '@/components/FullScreen';
+import Tags from './Tags';
 
 class TopHeader extends Component {
 	handleLogout = () => {
 		this.props.setUserInfo({});
+		this.props.emptyTag();
 		sessionStorage.removeItem('isLogin');
 		this.props.history.push('/');
 	};
@@ -42,26 +45,29 @@ class TopHeader extends Component {
 			</Menu>
 		);
 		return (
-			<div className="top-header" style={{ height: '70px' }}>
-				<div className="header-title">XX后台管理系统</div>
-				<div className="header-right">
-					<div className="full-screen">
-						<FullScreen />
-					</div>
-					<div className="news-wrap">
-						<Badge count={2}>
-							<Icon style={{ fontSize: '21px', cursor: 'pointer' }} type="bell" />
-						</Badge>
-					</div>
-					<div className="dropdown-wrap" id="dropdown-wrap">
-						<Dropdown getPopupContainer={() => document.getElementById('dropdown-wrap')} overlay={DropdownList}>
-							<div>
-								<Avatar size="large" />
-								<Icon style={{ color: 'rgba(0,0,0,.3)', cursor: 'pointer' }} type="caret-down" />
-							</div>
-						</Dropdown>
+			<div className="top-header">
+				<div className="top-header-inner">
+					<div className="header-title">XX后台管理系统</div>
+					<div className="header-right">
+						<div className="full-screen">
+							<FullScreen />
+						</div>
+						<div className="news-wrap">
+							<Badge count={2}>
+								<Icon style={{ fontSize: '21px', cursor: 'pointer' }} type="bell" onClick={() => this.props.history.push('/news')} />
+							</Badge>
+						</div>
+						<div className="dropdown-wrap" id="dropdown-wrap">
+							<Dropdown getPopupContainer={() => document.getElementById('dropdown-wrap')} overlay={DropdownList}>
+								<div>
+									<Avatar size="large" />
+									<Icon style={{ color: 'rgba(0,0,0,.3)', cursor: 'pointer' }} type="caret-down" />
+								</div>
+							</Dropdown>
+						</div>
 					</div>
 				</div>
+				<Tags />
 			</div>
 		);
 	}
@@ -71,6 +77,9 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
 	setUserInfo: data => {
 		dispatch(setUserInfo(data));
+	},
+	emptyTag: () => {
+		dispatch(emptyTag());
 	}
 });
 export default connect(

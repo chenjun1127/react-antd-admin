@@ -17,12 +17,10 @@ const MainContent = ({ location }) => {
 	return (
 		<TransitionGroup>
 			<CSSTransition classNames="fade" key={location.pathname} timeout={500}>
-				<Content style={{ padding: '20px'}}>
+				<Content style={{ padding: '20px' }}>
 					<Switch>
-						{routes.map(ele => {
-							return handleFilter(ele.permission) && <Route component={ele.component} key={ele.path} path={ele.path} />;
-						})}
-						<Redirect from='/' to="/error/404" />
+						{routes.map(ele => handleFilter(ele.permission) && <Route render={() => <ele.component />} key={ele.path} path={ele.path} />)}
+						<Redirect from="/" to="/error/404" />
 					</Switch>
 				</Content>
 			</CSSTransition>

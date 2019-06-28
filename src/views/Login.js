@@ -19,7 +19,7 @@ class Login extends Component {
 				sessionStorage.setItem('isLogin', '1');
 				// 模拟生成一些数据
 				this.props.setUserInfo(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } }));
-				sessionStorage.setItem('userInfo', JSON.stringify(Object.assign({}, values, { role: { type:1, name: '超级管理员' } })));
+				sessionStorage.setItem('userInfo', JSON.stringify(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } })));
 				this.props.history.push('./dashboard');
 			} else {
 				console.log(err);
@@ -32,6 +32,10 @@ class Login extends Component {
 	}
 	componentWillUnmount() {
 		window.addEventListener('resize', this.onResize);
+		// componentWillMount进行异步操作时且在callback中进行了setState操作时，需要在组件卸载时清除state
+		this.setState = () => {
+			return;
+		};
 	}
 	onResize() {
 		this.setState({ clientHeight: document.documentElement.clientHeight || document.body.clientHeight });

@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 import { setUserInfo } from '@/redux/actions/userInfo';
+import { addTag } from '@/redux/actions/tagList';
 import { menus } from '@/router/menus';
+import { routes } from '@/router/mainRouter';
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 class SideNenu extends Component {
@@ -19,7 +21,16 @@ class SideNenu extends Component {
 		if (!permission || permission === roleType) return true;
 		return false;
 	};
-
+	// 点击之后加入页签
+	handClickTag(currentLink, parent) {
+		const { path, title } = currentLink;
+		for (let i = 0; i < routes.length; i++) {
+			if (path === routes[i].path) {
+				let obj = { path, title, component: routes[i].component };
+				this.props.addTag(parent ? Object.assign({}, obj, { parent: parent.title }) : obj);
+			}
+		}
+	}
 	render() {
 		const menuSelected = this.props.history.location.pathname;
 		const menuOpened = `/${menuSelected.split('/')[1]}`;
@@ -45,7 +56,9 @@ class SideNenu extends Component {
 											subItem =>
 												this.handleFilter(subItem.permission) && (
 													<Menu.Item key={subItem.path}>
-														<Link to={subItem.path}>{subItem.title}</Link>
+														<Link onClick={() => this.handClickTag(subItem, ele)} to={subItem.path}>
+															{subItem.title}
+														</Link>
 													</Menu.Item>
 												)
 										)}
@@ -56,7 +69,7 @@ class SideNenu extends Component {
 							return (
 								this.handleFilter(ele.permission) && (
 									<Menu.Item key={ele.path}>
-										<Link to={ele.path}>
+										<Link to={ele.path} onClick={() => this.handClickTag(ele)}>
 											<Icon type={ele.icon} />
 											<span>{ele.title}</span>
 										</Link>
@@ -75,6 +88,9 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
 	setUserInfo: data => {
 		dispatch(setUserInfo(data));
+	},
+	addTag: data => {
+		dispatch(addTag(data));
 	}
 });
 export default connect(

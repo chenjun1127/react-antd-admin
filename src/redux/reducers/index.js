@@ -1,3 +1,4 @@
 import { combineReducers } from 'redux';
 import userInfo from './userInfo';
-export default combineReducers({ userInfo });
+import tagList from './tagList';
+export default combineReducers({ userInfo, tagList });

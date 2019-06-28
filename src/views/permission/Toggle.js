@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Radio, Row } from 'antd';
+import { withRouter } from 'react-router-dom';
 import { setUserInfo } from '@/redux/actions/userInfo';
+import { addTag, removeTag } from '@/redux/actions/tagList';
 import { connect } from 'react-redux';
 
 const RadioGroup = Radio.Group;
@@ -16,6 +18,11 @@ class Toggle extends Component {
 			this.props.history.push('/permission/toggle');
 		} else {
 			this.props.history.push('/permission/intercept');
+			this.props.removeTag('/permission/toggle');
+			this.props.addTag({
+				title: '路由拦截',
+				path: '/permission/intercept'
+			});
 		}
 		// 模拟生成一些数据
 		this.props.setUserInfo(Object.assign({}, this.props.userInfo, { role: { type: value, name } }));
@@ -42,9 +49,18 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
 	setUserInfo: data => {
 		dispatch(setUserInfo(data));
+	},
+	addTag: data => {
+		dispatch(addTag(data));
+	},
+	removeTag: data => {
+		dispatch(removeTag(data));
 	}
 });
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Toggle);
+
+export default withRouter(
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	)(Toggle)
+);

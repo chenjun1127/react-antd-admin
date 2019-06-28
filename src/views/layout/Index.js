@@ -6,6 +6,7 @@ import { setUserInfo } from '@/redux/actions/userInfo';
 import { Layout } from 'antd';
 import MainContent from './MainContent';
 
+
 class Index extends Component {
 	render() {
 		return (

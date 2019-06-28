@@ -1,4 +1,4 @@
-export function debounce(func, wait, immediate) {
+function debounce(func, wait, immediate) {
 	let timeout, args, context, timestamp, result;
 
 	const later = function() {
@@ -32,3 +32,18 @@ export function debounce(func, wait, immediate) {
 		return result;
 	};
 }
+
+// 数组去重
+const unique = arr => {
+	const res = [];
+	const json = {};
+	for (let i = 0; i < arr.length; i++) {
+		if (!json[arr[i]]) {
+			res.push(arr[i]);
+			json[arr[i]] = 1;
+		}
+	}
+	return res;
+};
+
+export { unique, debounce };
