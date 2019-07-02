@@ -12,12 +12,14 @@ import TableEdit from '../views/table/TableEdit';
 import TableSearch from '../views/table/TableSearch';
 import BasicForm from '../views/form/BasicForm';
 import Editor from '../views/form/TextEditor';
-import News from '../views/News';
+import News from '../views/news/News';
+import MarkDown from '../views/form/MarkDown';
 
 export const routes = [
 	{ path: '/dashboard', component: Dashboard },
 	{ path: '/form/basic', component: BasicForm },
 	{ path: '/form/editor', component: Editor },
+	{ path: '/form/markdown', component:MarkDown },
 	{ path: '/table/basic', component: TableBasic },
 	{ path: '/table/edit', component: TableEdit },
 	{ path: '/table/search', component: TableSearch },

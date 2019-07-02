@@ -2,7 +2,7 @@
  * @ Author: Jone Chen
  * @ Create Time: 2019-06-19 16:58:23
  * @ Modified by: Jone Chen
- * @ Modified time: 2019-06-27 18:23:57
+ * @ Modified time: 2019-07-01 14:33:29
  * @ Description:权限控制，1==超级管理员，其它为普通用户
  */
 
@@ -13,6 +13,7 @@ export const menus = [
     children: [
 			{ path: '/form/basic', title: '基本表单' },
 			{ path: '/form/editor', title: '富文本' },
+			{ path: '/form/markdown', title: 'MarkDown' },
     ]
 	},
 	{

@@ -75,20 +75,21 @@ class TableSearch extends Component {
 			if (gender) {
 				this.fetch({
 					gender,
-					page:this.state.pagination.current,
+					page: this.state.pagination.current
 				});
 			}
 		});
 	};
 	handleReset = () => {
 		this.props.form.resetFields();
+		this.fetch();
 	};
 	onShowSizeChange(current, pageSize) {
 		const pagination = { ...this.state.pagination };
 		pagination.pageSize = pageSize;
 		pagination.current = current;
 		this.setState({ pagination }, () => {
-			this.fetch({ results: this.state.pagination.pageSize,page:this.state.pagination.current });
+			this.fetch({ results: this.state.pagination.pageSize, page: this.state.pagination.current });
 		});
 	}
 

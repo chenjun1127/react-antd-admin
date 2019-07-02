@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs, List, Button } from 'antd';
-import '../assets/css/news';
+import '@/assets/css/news';
 const { TabPane } = Tabs;
 const news = [
 	{

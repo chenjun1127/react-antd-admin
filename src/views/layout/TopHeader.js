@@ -3,11 +3,15 @@ import { Icon, Avatar, Dropdown, Menu, Badge } from 'antd';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setUserInfo } from '@/redux/actions/userInfo';
-import { emptyTag } from '@/redux/actions/tagList';
+import { emptyTag, addTag } from '@/redux/actions/tagList';
+import { setBreadCrumb, setTags } from '@/redux/actions/setting';
+import { routes } from '@/router/mainRouter';
 import FullScreen from '@/components/FullScreen';
 import Tags from './Tags';
+import BasicDrawer from '@/components/BasicDrawer';
 
 class TopHeader extends Component {
+	state = { visible: false };
 	handleLogout = () => {
 		this.props.setUserInfo({});
 		this.props.emptyTag();
@@ -23,6 +27,32 @@ class TopHeader extends Component {
 			this.props.history.push('/login');
 		}
 	}
+	toNews() {
+		this.handClickTag('/news');
+		this.props.history.push('/news');
+	}
+	handClickTag(path, parent) {
+		for (let i = 0; i < routes.length; i++) {
+			if (path === routes[i].path) {
+				let obj = { path, title: '消息', component: routes[i].component };
+				this.props.addTag(parent ? Object.assign({}, obj, { parent: parent.title }) : obj);
+			}
+		}
+	}
+	setting = () => {
+		this.setState({ visible: true });
+	};
+	onClose = () => {
+		this.setState({ visible: false });
+	};
+	onChangeTags = checked => {
+		this.props.setTags({ show: checked });
+		sessionStorage.setItem('tags', JSON.stringify({ show: checked }));
+	};
+	onChangeBreadCrumb = checked => {
+		this.props.setBreadCrumb({ show: checked });
+		sessionStorage.setItem('breadCrumb', JSON.stringify({ show: checked }));
+	};
 	render() {
 		const DropdownList = (
 			<Menu>
@@ -30,11 +60,7 @@ class TopHeader extends Component {
 					<Icon type="user" />
 					{this.props.userInfo.userName}
 				</Menu.Item>
-				<Menu.Item disabled key="edit">
-					<Icon type="edit" />
-					个人设置
-				</Menu.Item>
-				<Menu.Item disabled key="setting">
+				<Menu.Item key="setting" onClick={this.setting}>
 					<Icon type="setting" />
 					系统设置
 				</Menu.Item>
@@ -44,6 +70,7 @@ class TopHeader extends Component {
 				</Menu.Item>
 			</Menu>
 		);
+		const { tags } = this.props;
 		return (
 			<div className="top-header">
 				<div className="top-header-inner">
@@ -54,9 +81,10 @@ class TopHeader extends Component {
 						</div>
 						<div className="news-wrap">
 							<Badge count={2}>
-								<Icon style={{ fontSize: '21px', cursor: 'pointer' }} type="bell" onClick={() => this.props.history.push('/news')} />
+								<Icon style={{ fontSize: '21px', cursor: 'pointer' }} type="bell" onClick={this.toNews.bind(this)} />
 							</Badge>
 						</div>
+						<div className="username">{Object.keys(this.props.userInfo).length > 0 && this.props.userInfo.role.name}</div>
 						<div className="dropdown-wrap" id="dropdown-wrap">
 							<Dropdown getPopupContainer={() => document.getElementById('dropdown-wrap')} overlay={DropdownList}>
 								<div>
@@ -67,7 +95,8 @@ class TopHeader extends Component {
 						</div>
 					</div>
 				</div>
-				<Tags />
+				{tags.show ? <Tags /> : null}
+				<BasicDrawer title="系统设置" closable onClose={this.onClose} visible={this.state.visible} onChangeTags={this.onChangeTags} onChangeBreadCrumb={this.onChangeBreadCrumb} breadCrumbChecked={this.props.breadCrumb.show} tagsChecked={this.props.tags.show}/>
 			</div>
 		);
 	}
@@ -80,6 +109,15 @@ const mapDispatchToProps = dispatch => ({
 	},
 	emptyTag: () => {
 		dispatch(emptyTag());
+	},
+	addTag: data => {
+		dispatch(addTag(data));
+	},
+	setBreadCrumb: data => {
+		dispatch(setBreadCrumb(data));
+	},
+	setTags: data => {
+		dispatch(setTags(data));
 	}
 });
 export default connect(

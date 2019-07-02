@@ -5,16 +5,17 @@ import TopHeader from './TopHeader';
 import { setUserInfo } from '@/redux/actions/userInfo';
 import { Layout } from 'antd';
 import MainContent from './MainContent';
-
-
+import BreadCrumb from './BreadCrumb';
 class Index extends Component {
 	render() {
+		const { breadCrumb } = this.props;
 		return (
-			<div>
+			<div className="layout">
 				<Layout style={{ minHeight: '100vh' }}>
 					<SideMenu />
 					<Layout>
 						<TopHeader />
+						{breadCrumb.show ? <BreadCrumb /> : null}
 						<MainContent />
 					</Layout>
 				</Layout>
