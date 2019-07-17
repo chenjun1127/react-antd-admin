@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Chart from '@/components/chart/Chart';
 const chartData = {
 	backgroundColor: '#fff',
@@ -12,7 +13,7 @@ const chartData = {
 		},
 		left: 'center'
 	},
-	color:['#001529', '#1890FF','#1b9436','#751313'],
+	color: ['#001529', '#1890FF', '#1b9436', '#751313'],
 	tooltip: {
 		trigger: 'item',
 		formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -34,8 +35,12 @@ const chartData = {
 	]
 };
 
-const PieChart = () => {
-	return <Chart chartData={chartData} height={'500px'} style={{ padding: 0 }} />;
+const PieChart = props => <Chart chartData={chartData} height={'500px'} style={{ padding: 0 }} {...props} />;
+
+const mapStateToProps = state => {
+	return {
+		collapse: state.collapse
+	};
 };
 
-export default PieChart;
+export default connect(mapStateToProps)(PieChart);

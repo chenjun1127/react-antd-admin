@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setUserInfo } from '@/redux/actions/userInfo';
 import { emptyTag, addTag } from '@/redux/actions/tagList';
-import { setBreadCrumb, setTags } from '@/redux/actions/setting';
+import { setCollapse, setBreadCrumb, setTags, setTheme } from '@/redux/actions/setting';
 import { routes } from '@/router/mainRouter';
 import FullScreen from '@/components/FullScreen';
 import Tags from './Tags';
@@ -27,10 +27,10 @@ class TopHeader extends Component {
 			this.props.history.push('/login');
 		}
 	}
-	toNews() {
+	toNews = () => {
 		this.handClickTag('/news');
 		this.props.history.push('/news');
-	}
+	};
 	handClickTag(path, parent) {
 		for (let i = 0; i < routes.length; i++) {
 			if (path === routes[i].path) {
@@ -39,6 +39,9 @@ class TopHeader extends Component {
 			}
 		}
 	}
+	toggle = () => {
+		this.props.setCollapse({ isCollapsed: !this.props.collapse.isCollapsed });
+	};
 	setting = () => {
 		this.setState({ visible: true });
 	};
@@ -47,11 +50,18 @@ class TopHeader extends Component {
 	};
 	onChangeTags = checked => {
 		this.props.setTags({ show: checked });
-		sessionStorage.setItem('tags', JSON.stringify({ show: checked }));
+		localStorage.setItem('tags', JSON.stringify({ show: checked }));
+		this.onClose();
 	};
 	onChangeBreadCrumb = checked => {
 		this.props.setBreadCrumb({ show: checked });
-		sessionStorage.setItem('breadCrumb', JSON.stringify({ show: checked }));
+		localStorage.setItem('breadCrumb', JSON.stringify({ show: checked }));
+		this.onClose();
+	};
+	onChangeTheme = checked => {
+		this.props.setTheme({ type: checked ? 'dark' : 'light' });
+		localStorage.setItem('theme', JSON.stringify({ type: checked ? 'dark' : 'light' }));
+		this.onClose();
 	};
 	render() {
 		const DropdownList = (
@@ -74,18 +84,19 @@ class TopHeader extends Component {
 		return (
 			<div className="top-header">
 				<div className="top-header-inner">
-					<div className="header-title">XX后台管理系统</div>
+					<Icon className="trigger" type={true ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle} />
+					<div className="header-title">通用后台管理系统</div>
 					<div className="header-right">
 						<div className="full-screen">
 							<FullScreen />
 						</div>
 						<div className="news-wrap">
-							<Badge count={2}>
-								<Icon style={{ fontSize: '21px', cursor: 'pointer' }} type="bell" onClick={this.toNews.bind(this)} />
+							<Badge count={3}>
+								<Icon style={{ fontSize: '21px', cursor: 'pointer' }} type="bell" onClick={this.toNews} />
 							</Badge>
 						</div>
 						<div className="username">{Object.keys(this.props.userInfo).length > 0 && this.props.userInfo.role.name}</div>
-						<div className="dropdown-wrap" id="dropdown-wrap">
+						<div className="dropdown-wrap" id="dropdown-wrap" style={{ cursor: 'pointer' }}>
 							<Dropdown getPopupContainer={() => document.getElementById('dropdown-wrap')} overlay={DropdownList}>
 								<div>
 									<Avatar size="large" />
@@ -96,7 +107,7 @@ class TopHeader extends Component {
 					</div>
 				</div>
 				{tags.show ? <Tags /> : null}
-				<BasicDrawer title="系统设置" closable onClose={this.onClose} visible={this.state.visible} onChangeTags={this.onChangeTags} onChangeBreadCrumb={this.onChangeBreadCrumb} breadCrumbChecked={this.props.breadCrumb.show} tagsChecked={this.props.tags.show}/>
+				<BasicDrawer title="系统设置" closable onClose={this.onClose} visible={this.state.visible} onChangeTags={this.onChangeTags} onChangeBreadCrumb={this.onChangeBreadCrumb} onChangeTheme={this.onChangeTheme} {...this.props} />
 			</div>
 		);
 	}
@@ -104,6 +115,9 @@ class TopHeader extends Component {
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
+	setCollapse: data => {
+		dispatch(setCollapse(data));
+	},
 	setUserInfo: data => {
 		dispatch(setUserInfo(data));
 	},
@@ -118,6 +132,9 @@ const mapDispatchToProps = dispatch => ({
 	},
 	setTags: data => {
 		dispatch(setTags(data));
+	},
+	setTheme: data => {
+		dispatch(setTheme(data));
 	}
 });
 export default connect(

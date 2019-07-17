@@ -1,6 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Chart from '@/components/chart/Chart';
-
 let xData = [];
 for (let i = 0; i < 12; i++) {
 	xData[i] = i + 1 + 'month';
@@ -186,8 +186,12 @@ const chartData = {
 	]
 };
 
-const MixinChart = () => {
-	return <Chart chartData={chartData} height={'700px'} style={{ padding: 0 }} />;
+const MixinChart = props => <Chart chartData={chartData} height={'700px'} style={{ padding: 0 }} {...props} />;
+
+const mapStateToProps = state => {
+	return {
+		collapse: state.collapse
+	};
 };
 
-export default MixinChart;
+export default connect(mapStateToProps)(MixinChart);

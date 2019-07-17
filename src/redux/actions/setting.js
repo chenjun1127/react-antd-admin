@@ -11,5 +11,17 @@ const setTags = data => {
 		data
 	};
 };
+const setTheme = data => {
+	return {
+		type: actionTypes.SET_THEME,
+		data
+	};
+};
+const setCollapse = data => {
+	return {
+		type: actionTypes.SET_COLLAPSE,
+		data
+	};
+};
 
-export { setBreadCrumb, setTags };
+export { setBreadCrumb, setTags, setTheme, setCollapse };

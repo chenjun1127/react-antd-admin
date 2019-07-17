@@ -121,7 +121,7 @@ class TableSearch extends Component {
 								)}
 							</FormItem>
 						</Col>
-						<Col span={2} style={{ marginRight: '10px' }} className="serarch-btns">
+						<Col span={2} style={{ marginRight: '10px', display: 'flex' }} className="serarch-btns">
 							<FormItem>
 								<Button icon="search" type="primary" htmlType="submit" className={'btn'} onClick={this.handleSearch}>
 									搜索

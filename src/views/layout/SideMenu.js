@@ -9,11 +9,7 @@ import { routes } from '@/router/mainRouter';
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 class SideNenu extends Component {
-	state = { collapsed: false, menuSelected: this.props.history.location.pathname };
-
-	toggle = () => {
-		this.setState({ collapsed: !this.state.collapsed });
-	};
+	state = { menuSelected: this.props.history.location.pathname };
 
 	handleFilter = permission => {
 		const roleType = sessionStorage.getItem('userInfo') && JSON.parse(sessionStorage.getItem('userInfo')).role.type;
@@ -32,13 +28,17 @@ class SideNenu extends Component {
 		}
 	}
 	render() {
+		// console.log(this.props);
 		const menuSelected = this.props.history.location.pathname;
 		const menuOpened = `/${menuSelected.split('/')[1]}`;
+		const type = this.props.theme.type;
+		const { collapse } = this.props;
 		return (
-			<Sider trigger={null} collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-				<div className="logo" />
-				<Icon className="trigger toggle-btn" type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} onClick={this.toggle} />
-				<Menu theme="dark" defaultOpenKeys={[menuOpened]} defaultSelectedKeys={[menuSelected]} selectedKeys={[menuSelected]} mode="inline">
+			<Sider trigger={null} collapsible collapsed={collapse.isCollapsed} theme={type} className="app-sider">
+				<div className="logo" style={{ color: type === 'dark' ? '#ffffffa6' : '' }}>
+					Logo
+				</div>
+				<Menu style={{ height: '50px' }} theme={type} defaultOpenKeys={[menuOpened]} defaultSelectedKeys={[menuSelected]} selectedKeys={[menuSelected]} mode="inline">
 					{menus.map(ele => {
 						if (ele.children) {
 							return (

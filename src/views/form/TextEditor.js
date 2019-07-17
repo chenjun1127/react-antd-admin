@@ -62,9 +62,9 @@ class TextEditor extends Component {
 		const { editorContent, editorState } = this.state;
 		return (
 			<div className="shadow-radius">
-				<div className="gutter-example button-demo">
-					<Row gutter={16}>
-						<Col className="gutter-row" md={24}>
+				<div className="gutter-example button-demo editor-demo">
+					<Row gutter={16} style={{padding:'0 5px'}}>
+						<Col className="gutter-row" md={24} >
 							<div className="gutter-box">
 								<Card title="富文本编辑器" bordered={false}>
 									<Editor

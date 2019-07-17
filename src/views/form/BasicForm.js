@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, Divider } from 'antd';
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button } from 'antd';
 const { Option } = Select;
 
 const residences = [
@@ -103,13 +103,12 @@ class BasicForm extends React.Component {
 
 		return (
 			<div className="shadow-radius">
-				<div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 10px 0 10px' }}>
+				<div className="public-title">
 					<h1>注册表单</h1>
 					<h1>
-						更多表单参考：<a href="https://ant.design/components/form-cn/">Form </a>
+						更多表单参考：<a target="_blank" href="https://ant.design/components/form-cn/" rel="noopener noreferrer">Form </a>
 					</h1>
 				</div>
-				<Divider />
 				<Form {...formItemLayout} onSubmit={this.handleSubmit}>
 					<Form.Item label="邮箱">
 						{getFieldDecorator('emial', {

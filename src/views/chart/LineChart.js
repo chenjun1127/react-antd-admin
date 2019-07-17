@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import echarts from 'echarts';
 import Chart from '@/components/chart/Chart';
 const chartData = {
@@ -190,8 +191,12 @@ const chartData = {
 	]
 };
 
-const LineChart = () => {
-	return <Chart chartData={chartData} height={'500px'} style={{ padding: 0 }} />;
+const LineChart = props => <Chart chartData={chartData} height={'500px'} style={{ padding: 0 }} {...props} />;
+
+const mapStateToProps = state => {
+	return {
+		collapse: state.collapse
+	};
 };
 
-export default LineChart;
+export default connect(mapStateToProps)(LineChart);

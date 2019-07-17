@@ -4,3 +4,18 @@
 .home-toolbar a {
 	color: #333;
 }
+
+.editor-demo .ant-card-head {
+	padding: 0;
+	margin: 0 0px;
+	border: none;
+}
+
+.editor-demo .ant-card-body {
+	padding: 10px;
+	border: 1px solid #d9d9d9;
+}
+.editor-demo .rdw-editor-toolbar {
+	border: none;
+	border-bottom: 1px solid #e4e1e1;
+}

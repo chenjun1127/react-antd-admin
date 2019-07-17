@@ -27,7 +27,7 @@ class Chart extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.collapsed !== this.props.collapsed) {
+		if (nextProps.collapse.isCollapsed !== this.props.collapse.isCollapsed) {
 			this.resize();
 		}
 	}

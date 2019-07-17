@@ -4,18 +4,21 @@ const styles = {
 	display: 'flex',
 	justifyContent: 'space-between',
 	alignItems: 'center',
-	paddingBottom: '5px'
+	paddingBottom: '8px'
 };
 
-const BasicDrawer = ({ title, closable, onClose, visible, onChangeTags, onChangeBreadCrumb, tagsChecked, breadCrumbChecked }) => {
+const BasicDrawer = props => {
 	return (
 		<>
-			<Drawer title={title} placement="right" closable={closable} onClose={onClose} visible={visible}>
+			<Drawer title={props.title} placement="right" closable={props.closable} onClose={props.onClose} visible={props.visible}>
 				<p style={styles}>
-					<span>多页签</span> <Switch size="small" defaultChecked={tagsChecked} onChange={onChangeTags} />
+					<span>主题设置</span> <Switch checkedChildren="暗" unCheckedChildren="亮" defaultChecked={props.theme.type === 'dark' ? true : false} onChange={props.onChangeTheme} />
 				</p>
 				<p style={styles}>
-					<span>面包屑</span> <Switch size="small" defaultChecked={breadCrumbChecked} onChange={onChangeBreadCrumb} />
+					<span>面包屑</span> <Switch defaultChecked={props.breadCrumb.show} onChange={props.onChangeBreadCrumb} />
+				</p>
+				<p style={styles}>
+					<span>多页签</span> <Switch defaultChecked={props.tags.show} onChange={props.onChangeTags} />
 				</p>
 			</Drawer>
 		</>

@@ -1,6 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Chart from '@/components/chart/Chart';
-
 const xAxisData = [];
 const data = [];
 const data2 = [];
@@ -109,6 +109,12 @@ const chartData = {
 	}
 };
 
-const Keyboard = () => <Chart chartData={chartData} height={'500px'} style={{ padding: 0 }} />;
+const Keyboard = props => <Chart chartData={chartData} height={'500px'} style={{ padding: 0 }} {...props} />;
 
-export default Keyboard;
+const mapStateToProps = state => {
+	return {
+		collapse: state.collapse
+	};
+};
+
+export default connect(mapStateToProps)(Keyboard);

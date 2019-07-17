@@ -2,12 +2,13 @@
  * @ Author: Jone Chen
  * @ Create Time: 2019-06-19 16:58:23
  * @ Modified by: Jone Chen
- * @ Modified time: 2019-07-01 14:33:29
+ * @ Modified time: 2019-07-17 10:41:41
  * @ Description:权限控制，1==超级管理员，其它为普通用户
  */
 
 export const menus = [
 	{ path: '/dashboard', title: '首页', icon: 'home' },
+	{ path: '/icon', title: '图标', icon: 'file' },
 	{
     path: '/form', title: '表单', icon: 'form',
     children: [
@@ -17,7 +18,7 @@ export const menus = [
     ]
 	},
 	{
-    path: '/table', title: '表格', icon: 'copy',
+    path: '/table', title: '表格', icon: 'table',
     children: [
       { path: '/table/basic', title: '基础表格' },
       { path: '/table/edit', title: '表格编辑' },
@@ -33,9 +34,17 @@ export const menus = [
 			{ path: '/chart/pie', title: '饼图' },
       { path: '/chart/mixin', title: '混合图表'},
     ]
+	},
+	{
+    path: '/control', title: '控件', icon: 'control',
+    children: [
+			{ path: '/control/tree', title: '树形控件' },
+			{ path: '/control/select', title: '选择器' },
+			{ path: '/control/other', title: '其它' },
+    ]
   },
   {
-    path: '/permission', title: '权限测试', icon: 'rocket',
+    path: '/permission', title: '权限测试', icon: 'safety-certificate',
     children: [
       { path: '/permission/toggle', title: '权限切换' , permission: 1},
       { path: '/permission/intercept', title: '路由拦截', }

@@ -161,5 +161,8 @@
         "react-hot-loader/babel"
       ]
     ]
+  },
+  "devDependencies": {
+    "copy-to-clipboard": "^3.2.0"
   }
 }
