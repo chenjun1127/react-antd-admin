@@ -48,52 +48,50 @@ export default class News extends Component {
 		const { loading, dataSource } = this.state;
 		return (
 			<div className="shadow-radius">
-				<div style={{ padding: '0 10px' }}>
-					<Tabs defaultActiveKey="1" onChange={this.handleChangeTab}>
-						<TabPane tab="未读消息" key="1">
-							<List
-								loading={loading}
-								className="list-news"
-								footer={
-									<div>
-										<Button type="primary">全部标为已读</Button>
+				<Tabs defaultActiveKey="1" onChange={this.handleChangeTab}>
+					<TabPane tab="未读消息" key="1">
+						<List
+							loading={loading}
+							className="list-news"
+							footer={
+								<div>
+									<Button type="primary">全部标为已读</Button>
+								</div>
+							}
+							dataSource={dataSource}
+							renderItem={item => (
+								<List.Item key={item.id}>
+									<div className="list-title">
+										<span style={{ color: '#1890ff', cursor: 'pointer' }}>{item.title}</span>
 									</div>
-								}
-								dataSource={dataSource}
-								renderItem={item => (
-									<List.Item key={item.id}>
-										<div className="list-title">
-											<span style={{ color: '#1890ff',cursor:'pointer' }}>{item.title}</span>
-										</div>
-										<div className="list-time">{item.createTime}</div>
-										<Button>标为已读</Button>
-									</List.Item>
-								)}
-							/>
-						</TabPane>
-						<TabPane tab="已读消息" key="2">
-							<List
-								loading={loading}
-								className="list-news"
-								footer={
-									<div>
-										<Button type="danger">删除全部</Button>
+									<div className="list-time">{item.createTime}</div>
+									<Button>标为已读</Button>
+								</List.Item>
+							)}
+						/>
+					</TabPane>
+					<TabPane tab="已读消息" key="2">
+						<List
+							loading={loading}
+							className="list-news"
+							footer={
+								<div>
+									<Button type="danger">删除全部</Button>
+								</div>
+							}
+							dataSource={dataSource}
+							renderItem={item => (
+								<List.Item key={item.id}>
+									<div className="list-title">
+										<span>{item.title}</span>
 									</div>
-								}
-								dataSource={dataSource}
-								renderItem={item => (
-									<List.Item key={item.id}>
-										<div className="list-title">
-											<span>{item.title}</span>
-										</div>
-										<div className="list-time">{item.createTime}</div>
-										<Button type="danger">删除</Button>
-									</List.Item>
-								)}
-							/>
-						</TabPane>
-					</Tabs>
-				</div>
+									<div className="list-time">{item.createTime}</div>
+									<Button type="danger">删除</Button>
+								</List.Item>
+							)}
+						/>
+					</TabPane>
+				</Tabs>
 			</div>
 		);
 	}

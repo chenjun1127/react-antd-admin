@@ -1,5 +1,5 @@
 import * as actionTypes from '../constants/index';
-const breadCrumbState = localStorage.getItem('breadCrumb') ? JSON.parse(localStorage.getItem('breadCrumb')) : { show: false };
+const breadCrumbState = localStorage.getItem('breadCrumb') ? JSON.parse(localStorage.getItem('breadCrumb')) : { show: true };
 const tagsState = localStorage.getItem('tags') ? JSON.parse(localStorage.getItem('tags')) : { show: false };
 const themeState = localStorage.getItem('theme') ? JSON.parse(localStorage.getItem('theme')) : { type: 'dark' };
 const breadCrumb = (state = breadCrumbState, action) => {

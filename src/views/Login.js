@@ -16,17 +16,16 @@ class Login extends Component {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
-				sessionStorage.setItem('isLogin', '1');
+				localStorage.setItem('isLogin', '1');
 				// 模拟生成一些数据
 				this.props.setUserInfo(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } }));
-				sessionStorage.setItem('userInfo', JSON.stringify(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } })));
-				this.props.history.push('./dashboard');
+				localStorage.setItem('userInfo', JSON.stringify(Object.assign({}, values, { role: { type: 1, name: '超级管理员' } })));
+				this.props.history.push('/dashboard');
 			} else {
 				console.log(err);
 			}
 		});
 	};
-
 	componentDidMount() {
 		window.addEventListener('resize', this.onResize);
 	}
@@ -70,9 +69,10 @@ class Login extends Component {
 							})(<Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="密码" />)}
 						</FormItem>
 						<FormItem>
-							<Button type="primary" htmlType="submit" className={'btn'} onClick={this.login}>
+							<Button type="primary" htmlType="submit" block onClick={this.login}>
 								登录
 							</Button>
+							<div style={{ color: '#999',paddingTop:'10px',textAlign:'center' }}>Tips : 输入任意用户名密码即可</div>
 						</FormItem>
 					</Form>
 				</div>

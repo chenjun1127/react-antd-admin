@@ -1,41 +1,58 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb ,Icon} from 'antd';
 import { menus } from '@/router/menus';
 
 class BreadCrumb extends React.Component {
-	render() {
-		const { location } = this.props;
-		const routes_1 = [];
-		const routes_2 = [];
-		for (let i = 0; i < menus.length; i++) {
-			if (menus[i].children) {
-				for (let j = 0; j < menus[i].children.length; j++) {
-					if (location.pathname === menus[i].children[j].path) {
-						routes_1.push({
-							path: menus[i].path,
-							breadcrumbName: menus[i].title
-						});
-						routes_2.push({
-							path: menus[i].children[j].path,
-							breadcrumbName: menus[i].children[j].title
+	createBreadCrumbData = (location, data) => {
+		let arrA = [];
+		let arrB = [];
+		let arrC = [];
+		data.forEach(a => {
+			if (location.pathname === a.path) {
+				arrA.push(a);
+			}
+			if (a.children && a.children.length > 0) {
+				a.children.forEach(b => {
+					if (location.pathname === b.path) {
+						arrB.push(b);
+						arrA.push({
+							icon: a.icon || '',
+							path: a.path,
+							title: a.title
 						});
 					}
-				}
-			} else {
-				if (location.pathname === menus[i].path) {
-					routes_1.push({
-						breadcrumbName: menus[i].title,
-						path: menus[i].path
-					});
-				}
+					if (b.children && b.children.length > 0) {
+						b.children.forEach(c => {
+							if (location.pathname === c.path) {
+								arrC.push(c);
+								arrB.push({
+									icon: b.icon || '',
+									path: b.path,
+									title: b.title
+								});
+								arrA.push({
+									icon: a.icon || '',
+									path: a.path,
+									title: a.title
+								});
+							}
+						});
+					}
+				});
 			}
-		}
-		const routes = [...routes_1, ...routes_2];
+		});
+		// console.log(arrA, arrB, arrC);
+		return [...arrA, ...arrB, ...arrC];
+	};
+	render() {
+		const { location } = this.props;
+		const routes = this.createBreadCrumbData(location, menus);
+		// console.log(routes);
 		if (!routes.length) return null;
 		const itemRender = (route, params, routes, paths) => {
-			const first = routes.indexOf(route) === 0;
-			return first ? <span>{route.breadcrumbName}</span> : <Link to={route.path}>{route.breadcrumbName}</Link>;
+			const last = routes.indexOf(route) === routes.length - 1;
+			return last ? <Link to={route.path}>{route.icon && <Icon type={route.icon} />} {route.title}</Link> : <span>{route.icon && <Icon type={route.icon} />} {route.title}</span>;
 		};
 		return (
 			<div className="breadCrumb">

@@ -16,11 +16,11 @@ class Intercept extends Component {
 		if (Object.keys(userInfo).length === 0) return null;
 		let name = userInfo.role.type === 1 ? '超级管理员' : '普通用户';
 		return (
-			<div className="shadow-radius" style={{ padding: 20 }}>
-				<Row style={{ margin: '20px 0' }}>
-					hi, {userInfo.userName}，你当前为{name}，
+			<div className="shadow-radius">
+				<Row>
+					<p>hi, {userInfo.userName}，你当前为{name}，</p>
+					<p>普通用户看不到权限切换页面</p>
 				</Row>
-				<Row>普通用户看不到权限切换页面</Row>
 			</div>
 		);
 	}

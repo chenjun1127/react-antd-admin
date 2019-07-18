@@ -59,12 +59,17 @@ $borderColor: #d8d8d8;
 			}
 		}
 	}
+	.drop-list {
+		li {
+			padding: 10px 15px;
+		}
+	}
 }
 
 .shadow-radius {
 	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);
 	border-radius: 2px;
-	padding: 10px;
+	padding: 15px;
 	background-color: #fff !important;
 	min-height: 80vh;
 }
@@ -74,7 +79,6 @@ $borderColor: #d8d8d8;
 	justify-content: space-between;
 	padding: 10px 0;
 	border-bottom: 1px solid rgb(217, 217, 217);
-	margin: 0 10px;
 	margin-bottom: 10px;
 }
 
@@ -104,35 +108,47 @@ $borderColor: #d8d8d8;
 		align-items: center;
 		justify-content: center;
 		border: 1px solid $borderColor;
-		padding: 6px 10px;
+		padding: 4px 22px;
+		position: relative;
 		margin-right: 4px;
 		cursor: pointer;
+		&:before {
+			content: '';
+			display: block;
+			width: 6px;
+			height: 6px;
+			background: #b1b1b1;
+			border-radius: 50%;
+			left: 8px;
+			top: 12px;
+			position: absolute;
+		}
+		&:first-child {
+			em,
+			&:before {
+				display: none;
+			}
+		}
 		em {
 			font-style: normal;
 			font-size: 16px;
-			margin: 0 3px;
+			margin-left: 4px;
 			width: 14px;
 			height: 14px;
-			margin-top: -2px;
-			border-radius: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			position: absolute;
+			right: 4px;
+			top: 2px;
 		}
 		.hide {
 			display: none;
 		}
-		span,
-		em {
-			&:hover {
-				color: #1890ff;
-			}
-		}
 	}
 	.isActive {
-		color: #1890ff;
-		em {
-			color: #888;
+		color: #fff;
+		background: linear-gradient(to right, #2187e8, #1890ff);
+		border-color: #1890ff;
+		&:before {
+			background: #fff;
 		}
 	}
 }
@@ -152,7 +168,7 @@ $borderColor: #d8d8d8;
 	}
 }
 .breadCrumb {
-	padding: 20px;
+	padding: 15px;
 	padding-bottom: 0;
 }
 

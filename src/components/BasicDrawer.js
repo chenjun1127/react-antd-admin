@@ -12,7 +12,7 @@ const BasicDrawer = props => {
 		<>
 			<Drawer title={props.title} placement="right" closable={props.closable} onClose={props.onClose} visible={props.visible}>
 				<p style={styles}>
-					<span>主题设置</span> <Switch checkedChildren="暗" unCheckedChildren="亮" defaultChecked={props.theme.type === 'dark' ? true : false} onChange={props.onChangeTheme} />
+					<span>主题切换</span> <Switch checkedChildren="暗" unCheckedChildren="亮" defaultChecked={props.theme.type === 'dark' ? true : false} onChange={props.onChangeTheme} />
 				</p>
 				<p style={styles}>
 					<span>面包屑</span> <Switch defaultChecked={props.breadCrumb.show} onChange={props.onChangeBreadCrumb} />

@@ -12,7 +12,7 @@ class SideNenu extends Component {
 	state = { menuSelected: this.props.history.location.pathname };
 
 	handleFilter = permission => {
-		const roleType = sessionStorage.getItem('userInfo') && JSON.parse(sessionStorage.getItem('userInfo')).role.type;
+		const roleType = localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo')).role.type;
 		// 过滤没有权限的页面
 		if (!permission || permission === roleType) return true;
 		return false;
@@ -27,6 +27,38 @@ class SideNenu extends Component {
 			}
 		}
 	}
+	// 递归渲染菜单
+	renderMenu = data => {
+		return data.map(item => {
+			if (item.children) {
+				return (
+					this.handleFilter(item.permission) && (
+						<SubMenu
+							key={item.path}
+							title={
+								<span>
+									{item.icon ? <Icon type={item.icon} /> : ''}
+									<span>{item.title}</span>
+								</span>
+							}
+						>
+							{this.renderMenu(item.children)}
+						</SubMenu>
+					)
+				);
+			}
+			return (
+				this.handleFilter(item.permission) && (
+					<Menu.Item key={item.path}>
+						<Link to={item.path} onClick={() => this.handClickTag(item)}>
+							{item.icon ? <Icon type={item.icon} /> : ''}
+							<span>{item.title}</span>
+						</Link>
+					</Menu.Item>
+				)
+			);
+		});
+	};
 	render() {
 		// console.log(this.props);
 		const menuSelected = this.props.history.location.pathname;
@@ -39,45 +71,7 @@ class SideNenu extends Component {
 					Logo
 				</div>
 				<Menu style={{ height: '50px' }} theme={type} defaultOpenKeys={[menuOpened]} defaultSelectedKeys={[menuSelected]} selectedKeys={[menuSelected]} mode="inline">
-					{menus.map(ele => {
-						if (ele.children) {
-							return (
-								this.handleFilter(ele.permission) && (
-									<SubMenu
-										key={ele.path}
-										title={
-											<span>
-												<Icon type={ele.icon} />
-												<span>{ele.title}</span>
-											</span>
-										}
-									>
-										{ele.children.map(
-											subItem =>
-												this.handleFilter(subItem.permission) && (
-													<Menu.Item key={subItem.path}>
-														<Link onClick={() => this.handClickTag(subItem, ele)} to={subItem.path}>
-															{subItem.title}
-														</Link>
-													</Menu.Item>
-												)
-										)}
-									</SubMenu>
-								)
-							);
-						} else {
-							return (
-								this.handleFilter(ele.permission) && (
-									<Menu.Item key={ele.path}>
-										<Link to={ele.path} onClick={() => this.handClickTag(ele)}>
-											<Icon type={ele.icon} />
-											<span>{ele.title}</span>
-										</Link>
-									</Menu.Item>
-								)
-							);
-						}
-					})}
+					{this.renderMenu(menus)}
 				</Menu>
 			</Sider>
 		);
