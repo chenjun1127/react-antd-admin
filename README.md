@@ -57,7 +57,7 @@ React-Antd-Admin 同时也是个很好的前端脚手架学习示例，如果你
 
 克隆源碼
 ```
-git clone https://github.com/chenjun1127/react-antd-admin
+git clone https://github.com/chenjun1127/react-antd-admin.git
 ```
 安裝依賴
 ```
