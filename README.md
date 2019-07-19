@@ -17,8 +17,17 @@ React-Antd-Admin 同时也是个很好的前端脚手架学习示例，如果你
 * [ECMAScript 6](http://es6.ruanyifeng.com)
 * [Babel](https://babeljs.io)
 
-### [项目预览](https://c-jun.coding.me/static-pages/react-antd-admin/)
+### 项目预览
+还是先睹为快吧，建议 Chrome浏览器预览，[Live-Demo](https://c-jun.coding.me/static-pages/react-antd-admin/)
 
+### 功能 
+该项目基本搭建了一个企业级管理系统骨架，提供通用组件及页面扩展，不涉及业务逻辑开发。具体功能如下：
+* 基本登录、登出
+* 路由及菜单权限管理
+* 支持多页签、面包屑导航
+* 系统设置
+* antd官方组件及第三方组件···
+* ···
 ### 项目结构
 
 ```javascript
