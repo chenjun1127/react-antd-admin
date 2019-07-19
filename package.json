@@ -165,8 +165,5 @@
   "devDependencies": {
     "copy-to-clipboard": "^3.2.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:chenjun1127/react-antd-admin.git"
-  },
+  "repository": "git@github.com:chenjun1127/react-antd-admin.git"
 }
