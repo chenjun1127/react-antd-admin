@@ -70,7 +70,7 @@ git clone https://github.com/chenjun1127/react-antd-admin.git
 ```
 安裝依賴
 ```
-cd bear-admin
+cd react-antd-admin
 npm i or yarn
 ```
 调试
