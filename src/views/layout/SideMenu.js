@@ -5,18 +5,22 @@ import { Layout, Menu, Icon } from 'antd';
 import { setUserInfo } from '@/redux/actions/userInfo';
 import { addTag } from '@/redux/actions/tagList';
 import { menus } from '@/router/menus';
-import { routes } from '@/router/mainRouter';
+import { routes } from '@/router/routes';
 const { Sider } = Layout;
 const { SubMenu } = Menu;
+
 class SideNenu extends Component {
 	state = { menuSelected: this.props.history.location.pathname };
 
 	handleFilter = permission => {
 		const roleType = localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo')).role.type;
 		// 过滤没有权限的页面
-		if (!permission || permission === roleType) return true;
+		if (!permission || permission === roleType) {
+			return true;
+		}
 		return false;
 	};
+
 	// 点击之后加入页签
 	handClickTag(currentLink, parent) {
 		const { path, title } = currentLink;

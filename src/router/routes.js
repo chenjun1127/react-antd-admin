@@ -42,7 +42,7 @@ export const routes = [
 	{ path: '/control/tree', component: BasicTree },
 	{ path: '/control/select', component: BasicSelect },
 	{ path: '/control/other', component: Other },
-	{ path: '/permission/toggle', component: Toggle },
+	{ path: '/permission/toggle', component: Toggle,permission:1 },
 	{ path: '/permission/intercept', component: Intercept },
 	{ path: '/news', component: News },
 	{ path: '/error/404', component: Error404 },
