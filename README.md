@@ -23,14 +23,14 @@ React-Antd-Admin 同时也是个很好的前端脚手架学习示例，如果你
 
 ```javascript
 ├── src                     项目主文件目录
-│   ├── assets               样式图片及SVG文件
+│   ├── assets              样式图片及SVG文件
 │   │   └── ...
 │   ├── axios               axios请求
 │   │   └── ...
 │   ├── components          组件
 │   │   ├── xxx.js
 │   │   └── ...
-│   ├── redux             redux目录
+│   ├── redux               redux目录
 │   │   ├── actions
 │   │   │   └── xxx.js
 │   │   ├── constants
@@ -38,12 +38,12 @@ React-Antd-Admin 同时也是个很好的前端脚手架学习示例，如果你
 │   │   ├── reducers
 │   │   │   └── xxx.js
 │   │   └── store.js
-│   ├── router             路由配置
+│   ├── router              路由配置
 │   │   ├── xxx.js
 │   │   └── ...
-│   ├── utils             工具
+│   ├── utils               工具
 │   │   └── xxx.js
-│   └── views             页面目录
+│   └── views               页面目录
 │       ├── layout
 │       │   │── xxx.js
 │       │   └── ...
