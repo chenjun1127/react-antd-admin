@@ -17,7 +17,7 @@ React-Antd-Admin 同时也是个很好的前端脚手架学习示例，如果你
 * [ECMAScript 6](http://es6.ruanyifeng.com)
 * [Babel](https://babeljs.io)
 
-### 项目截图见这里
+### [项目预览](https://c-jun.coding.me/react-antd-admin/build/)
 
 ### 项目结构
 
