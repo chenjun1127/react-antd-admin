@@ -1,6 +1,6 @@
 {
   "name": "react-antd-admin",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "dependencies": {
     "@babel/core": "7.4.3",

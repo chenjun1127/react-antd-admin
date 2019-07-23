@@ -68,6 +68,7 @@ class Tags extends Component {
 			}
 		}
 	}
+
 	componentDidUpdate(newProps) {
 		let tagList = document.querySelector('.tags-list');
 		let arrLi = tagList.querySelectorAll('li');
