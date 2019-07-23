@@ -36,7 +36,7 @@ $borderColor: #d8d8d8;
 .top-header {
 	background: #fff;
 	border-bottom: 1px solid $borderColor;
-	padding: 0 20px 0 15px;
+	padding: 0 15px;
 	position: relative;
 	.top-header-inner {
 		height: 70px;
@@ -96,21 +96,33 @@ $borderColor: #d8d8d8;
 .link-button:focus {
 	text-decoration: none;
 }
-
 .tags {
 	display: flex;
-	padding: 0;
 	margin-bottom: 4px;
+	.tags-scroll {
+		position: relative;
+		width: 100%;
+		height: 31px;
+	}
+}
+.tags-list {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	padding: 0;
+	transition: all 0.2s ease-in-out 0s;
 	width: 100%;
 	li {
 		list-style: none;
-		display: flex;
+		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		border: 1px solid $borderColor;
 		padding: 4px 22px;
 		position: relative;
 		margin-right: 4px;
+		word-break: keep-all;
 		cursor: pointer;
 		&:before {
 			content: '';

@@ -1,6 +1,6 @@
 {
   "name": "react-antd-admin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "dependencies": {
     "@babel/core": "7.4.3",
@@ -21,6 +21,7 @@
     "babel-preset-react-app": "^9.0.0",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "copy-to-clipboard": "^3.2.0",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
@@ -56,6 +57,7 @@
     "postcss-safe-parser": "4.0.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.1",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
     "react-draft-wysiwyg": "^1.13.2",
@@ -161,9 +163,6 @@
         "react-hot-loader/babel"
       ]
     ]
-  },
-  "devDependencies": {
-    "copy-to-clipboard": "^3.2.0"
   },
   "repository": "git@github.com:chenjun1127/react-antd-admin.git"
 }

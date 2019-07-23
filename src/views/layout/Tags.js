@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addTag, removeTag, emptyTag } from '@/redux/actions/tagList';
 import { menus } from '../../router/menus';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class Tags extends Component {
 	handChangeTag(activeKey) {
@@ -67,21 +68,36 @@ class Tags extends Component {
 			}
 		}
 	}
+	componentDidUpdate(newProps) {
+		let tagList = document.querySelector('.tags-list');
+		let arrLi = tagList.querySelectorAll('li');
+		let w = 0; // 根据tags计算宽度
+		for (var i = 0; i < arrLi.length; i++) {
+			w += arrLi[i].offsetWidth + 4;
+		}
+		tagList.style.width = w + 'px';
+	}
 
 	render() {
 		const { tagList, location } = this.props;
 		if (tagList.length === 0) return null;
 		return (
-			<ul className="tags">
-				{tagList.map((item, index) => (
-					<li key={item.path} className={location.pathname === item.path ? 'isActive' : ''} onClick={() => this.handChangeTag(item.path)}>
-						<span>{item.title}</span>
-						<em onClick={e => this.handRemoveTag(e, item.path)} className={index === 0 ? 'hide' : ''}>
-							&times;
-						</em>
-					</li>
-				))}
-			</ul>
+			<div className="tags">
+				<div className="tags-scroll">
+					<Scrollbars style={{ width: '100%', height: 45 }} autoHide universal={true}>
+						<ul className="tags-list">
+							{tagList.map((item, index) => (
+								<li key={item.path} className={location.pathname === item.path ? 'isActive' : ''} onClick={() => this.handChangeTag(item.path)}>
+									<span>{item.title}</span>
+									<em onClick={e => this.handRemoveTag(e, item.path)} className={index === 0 ? 'hide' : ''}>
+										&times;
+									</em>
+								</li>
+							))}
+						</ul>
+					</Scrollbars>
+				</div>
+			</div>
 		);
 	}
 }
