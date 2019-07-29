@@ -16,7 +16,7 @@ const About = props => {
 				</li>
 				<li>
 					<a href="https://ant.design/index-cn" target="_blank" rel="noopener noreferrer">
-						Antd-Design
+						Ant Design
 					</a>
 				</li>
 				<li>
@@ -72,7 +72,7 @@ const About = props => {
 				</li>
 				<li>
 					<a href="https://ant.design/index-cn" target="_blank" rel="noopener noreferrer">
-						Antd-Design
+						Ant Design
 					</a>
 				</li>
 			</ul>
